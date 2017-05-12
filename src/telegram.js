@@ -538,6 +538,20 @@ class TelegramBot extends EventEmitter {
     form.text = text;
     return this._request('sendMessage', { form });
   }
+  
+  /**
+   * Delete a message in a chat. Bot must be admin to perform this task.
+   * @param  {String} chatId The chat to delete the message from
+   * @param  {String} messageId The message to be deleted from the chat
+   * @param  {Object} [options] Additional Telegram query options
+   * @return {Promise}
+   * @see https://core.telegram.org/bots/api#answerinlinequery
+   */
+  deleteMessage(chatId, messageId, form = {}) {
+    form.chat_id = chatId;
+    form.message_id = messageId;
+    return this._request('deleteMessage', { form });
+  }
 
   /**
    * Send answers to an inline query.
